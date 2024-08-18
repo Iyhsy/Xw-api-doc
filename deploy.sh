@@ -4,10 +4,6 @@
 
 # 脚本出错立即退出
 set -e
-
-# 生成静态文件，目录为 vuepress-docs/.vuepress/dist
 npm run docs:build
-
 rm -rf docs
-
-mv vuepress-docs/.vuepress/dist docs
+mv Xw-api-doc/docs/.vuepress/dist docs
