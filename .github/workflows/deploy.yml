@@ -1,25 +1,33 @@
-name: vuepress-deploy
+name: build-deploy
 
 on:
   push:
-    branches:
-      - master  # 或者您的主分支名称
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'  # 您使用的 Node.js 版本
-      - name: Install dependencies
+          node-version: 16
+
+      - name: Install Dependent Node Pkgs
         run: npm install
-      - name: Build VuePress site
-        run: npm run docs:build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vuepress/dist
+
+      - name: Build
+        run: chmod +x ./build.sh && ./build.sh
+
+      - name: Commit and Push
+        run: |-
+          git config --global user.email "77bz@163.com"
+          git config --global user.name "小王同学"
+          git add -A
+          git commit -m "build:auto build and deploy"
+          git push
