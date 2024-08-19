@@ -2,7 +2,7 @@ const htmlModules = require('./config/htmlModules.js');
 const nav = require("./nav");
 
 module.exports = {
-    base: '/Xw-api-doc/',
+    // base: '/Xw-api-doc/',
     theme: 'vdoing', // 使用依赖包主题
     // theme: require.resolve('../../vdoing'), // 使用本地主题 (先将vdoing主题文件下载到本地：https://github.com/xugaoyi/Xw-API 开发者文档)
     title: "Xw-API 开发者文档",

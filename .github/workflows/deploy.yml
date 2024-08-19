@@ -1,33 +1,42 @@
-name: build-deploy
+name: deploy-web
 
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
 jobs:
-  build-and-deploy:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up Node
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - name: install nodejs
+        uses: actions/setup-node@v4.0.3
         with:
-          node-version: 16
-
-      - name: Install Dependent Node Pkgs
+          node-version: "16.x"
+      - name: install deps
         run: npm install
+      - name: build app
+        run: npm run build
+      - name: copy dist file with scp
+        uses: appleboy/scp-action@v0.0.1
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          port: 22
+          source: 'docs/'
+          TARGET: ${{ secrets.TARGET }}
+          EXCLUDE: "/dist/, /node_modules/"
 
-      - name: Build
-        run: chmod +x ./deploy.sh && ./deploy.sh
 
-      - name: Commit and Push
-        run: |-
-          git config --global user.email "77bz@163.com"
-          git config --global user.name "小王同学"
-          git add -A
-          git commit -m "build:auto build and deploy"
-          git push
+
+
+
+
+
+
+
+
+
+
