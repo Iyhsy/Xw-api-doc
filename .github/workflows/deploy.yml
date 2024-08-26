@@ -1,40 +1,49 @@
-name: deploy-web
-
+name: Build and Deploy
+# 监听 master 分支上的 push 事件
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
 jobs:
-  build:
-
+  build-and-deploy:
+    # 构建环境使用 ubuntu
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - name: install nodejs
-        uses: actions/setup-node@v4.0.3
+      # 官方action, 将代码拉取到虚拟机
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          node-version: "16.x"
-      - name: install deps
-        run: npm install
-      - name: build app
-        run: npm run build
-      - name: copy dist file with scp
-        uses: appleboy/scp-action@v0.0.1
+          persist-credentials: false
+
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          HOST: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          port: 22
-          source: 'docs/'
-          TARGET: ${{ secrets.TARGET }}
+          # 选择要使用的 node 版本
+          node-version: "16.20.2"
+          # 缓存 pnpm 依赖
+      - name: Install and Build
+        run: |
+          yarn install
+          yarn docs:build
 
-
-
-
-
-
-
-
-
-
-
+      # 部署到服务器
+      - name: Upload to Deploy Server
+        uses: appleboy/scp-action@master
+        with:
+          # 服务器域名
+          host: ${{ secrets.SERVER_HOST }}
+          # 服务器用户名
+          username: ${{ secrets.SERVER_USERNAME }}
+          # 服务器密码
+          password: ${{ secrets.SERVER_PASSWORD }}
+          # 服务器端口
+          port: ${{ secrets.SERVER_PORT }}
+          # 指定上传的文件目录(项目配置的打包目录名称)
+          source: './dist/*'
+          # 指定上传服务器目录
+          target: '/xiaowang/Xw-api-doc'
+          # 解压时覆盖现有文件
+          overwrite: true
+          # 删除指定数量的前导路径元素
+          strip_components: 1
