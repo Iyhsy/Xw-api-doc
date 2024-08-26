@@ -19,14 +19,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           # 选择要使用的 node 版本
-          node-version: "16"
+          node-version: "16.20.2"
           # 缓存 pnpm 依赖
       - name: Install and Build
         run: |
           npm install
           npm run docs:build
 
-      # 部署到服务器
+      - name: List files
+        run: ls -al Xw-api-doc/docs/.vuepress/dist/
+
+
+    # 部署到服务器
       - name: Upload to Deploy Server
         uses: appleboy/scp-action@master
         with:
@@ -39,7 +43,7 @@ jobs:
           # 服务器端口
           port: ${{ secrets.SERVER_PORT }}
           # 指定上传的文件目录(项目配置的打包目录名称)
-          source: 'Xw-api-doc/docs/.vuepress/dist/*'
+          source: './Xw-api-doc/docs/.vuepress/dist/*'
           # 指定上传服务器目录
           target: '/xiaowang/Xw-api-doc'
           # 解压时覆盖现有文件
