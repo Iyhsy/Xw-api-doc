@@ -22,11 +22,13 @@ jobs:
         run: |
           npm install
           npm run docs:build
-          echo "Build finished"
-          ls -al Xw-api-doc/docs/.vuepress/
+        working-directory: ./Xw-api-doc
 
-      - name: List files
-        run: ls -al Xw-api-doc/docs/.vuepress/dist/
+      - name: List build output
+        run: |
+          ls -al Xw-api-doc/docs/.vuepress/
+          ls -al Xw-api-doc/docs/.vuepress/dist/
+        working-directory: ./Xw-api-doc
 
       - name: Upload to Deploy Server
         uses: appleboy/scp-action@master
