@@ -20,12 +20,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           # 选择要使用的 node 版本
-          node-version: "16.20.2"
+          node-version: "16.20.1"
           # 缓存 pnpm 依赖
       - name: Install and Build
         run: |
-          yarn install
-          yarn docs:build
+          npm install
+          npm docs:build
 
       # 部署到服务器
       - name: Upload to Deploy Server
