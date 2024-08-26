@@ -27,8 +27,6 @@ jobs:
           port: 22
           source: 'docs/'
           TARGET: ${{ secrets.TARGET }}
-          EXCLUDE: "/dist/, /node_modules/"
-
 
 
 
