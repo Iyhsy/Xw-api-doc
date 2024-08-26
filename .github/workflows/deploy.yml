@@ -45,4 +45,4 @@ jobs:
           # 解压时覆盖现有文件
           overwrite: true
           # 删除指定数量的前导路径元素
-          strip_components: 1
+          strip_components: 0
