@@ -15,7 +15,6 @@ jobs:
         with:
           persist-credentials: false
 
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -40,7 +39,7 @@ jobs:
           # 服务器端口
           port: ${{ secrets.SERVER_PORT }}
           # 指定上传的文件目录(项目配置的打包目录名称)
-          source: './dist/*'
+          source: 'docs/dist/*'
           # 指定上传服务器目录
           target: '/xiaowang/Xw-api-doc'
           # 解压时覆盖现有文件
