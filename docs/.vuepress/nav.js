@@ -25,5 +25,6 @@ module.exports = [
     },
     // {text: '问答', link: '/pages/9cc27d/'},
     {text: '赞助', link: '/pages/1b12ed/'},
+    {text: '免责声明', link: '/pages/48e936/'},
     {text: 'Demo', link: 'https://github.com/Iyhsy/Xw-api-sdk-demo/blob/master/src/main/java/icu/xwang/xwapisdkdemo/controller/InvokeController.java'},
 ]

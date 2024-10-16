@@ -65,7 +65,7 @@ postList: none
   <tbody>
     <tr>
       <td align="center" valign="middle">
-        <img src="https://images.xw998.top/xwapi-images/images/WeChat.jpg" class="no-zoom" style="width:220px;margin: 10px;">
+        <img src="https://images.xwang.icu/xwapi-images/images/WeChat.jpg" class="no-zoom" style="width:220px;margin: 10px;">
         <p>vipw1111(添加我微信备注"API")</p>
       </td>
     </tr>

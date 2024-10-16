@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://doc.xwang.icu/" target="_blank" rel="noopener noreferrer"><img width="180" 
-src="https://images.xw998.top/xwapi-images/images/015023lWwAmvhFTb4CbC09.png" alt="logo"></a>
+src="https://images.xwang.icu/xwapi-images/images/015023lWwAmvhFTb4CbC09.png" alt="logo"></a>
 </p>
 
 

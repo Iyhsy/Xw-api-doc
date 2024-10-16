@@ -11,4 +11,6 @@ https://doc.xwang.icu/pages/1705240565347459073/
 https://doc.xwang.icu/pages/1705237990061580289/
 https://doc.xwang.icu/pages/a20ce8/
 https://doc.xwang.icu/pages/1b12ed/
+http://localhost:8080/pages/500557/
+http://localhost:8080/pages/8f5ec5/
 
